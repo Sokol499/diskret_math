@@ -1,1 +1,33 @@
+def convert_to_decimal(number, original_base):
+    try:
+        decimal_value = int(str(number), original_base)
+        return decimal_value
+    except (ValueError, TypeError):
+        return None
 
+def convert_from_decimal(number, target_base):
+    if not isinstance(number, int) or number < 0:
+        return None
+    if target_base < 2 or target_base > 36:
+        return None
+
+    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    if number == 0:
+        return "0"
+
+    converted_number = ""
+    while number > 0:
+        remainder = number % target_base
+        converted_number = digits[remainder] + converted_number
+        number //= target_base
+
+    return converted_number
+
+input_number = input()
+
+decimal_value = convert_to_decimal(input_number, 8)
+
+if decimal_value is not None:
+    result = convert_from_decimal(decimal_value, 11)
+    print(result)
