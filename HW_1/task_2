@@ -1,0 +1,26 @@
+def convert_time_to_seconds(num_weeks, num_days, num_hours, num_minutes, num_seconds):
+    total_seconds = (
+        num_weeks * 7 * 24 * 60 * 60
+        + num_days * 24 * 60 * 60
+        + num_hours * 60 * 60
+        + num_minutes * 60
+        + num_seconds
+    )
+    return total_seconds
+
+
+def decimal_to_binary(number):
+    return bin(number)[2:]
+
+input_data = input().split()
+
+try:
+    weeks, days, hours, minutes, seconds = map(int, input_data)
+except ValueError:
+    exit()
+
+total_seconds = convert_time_to_seconds(weeks, days, hours, minutes, seconds)
+
+binary_representation = decimal_to_binary(total_seconds)
+
+print(binary_representation)
